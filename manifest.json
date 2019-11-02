@@ -1,0 +1,26 @@
+{
+    "name": "The Curator",
+    "version": "1.0",
+    "description": "Chrome extension to assist looking for other news sources",
+    "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+            "default_icon": {
+            "16": "img.png",
+            "32": "img.png",
+            "48": "img.png",
+            "128": "img.png"
+        }
+    },
+    "icons": {
+        "16": "img.png",
+        "32": "img.png",
+        "48": "img.png",
+        "128": "img.png"
+    },
+    "manifest_version": 2
+}
