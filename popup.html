@@ -2,11 +2,57 @@
 <html>    
     <head>      
         <style>        
-            button {          
-                height: 30px;          
-                width: 30px;          
-                outline: none;        
-            }      
+            body {
+                min-width: 370px;
+                min-height: 400px;
+                position: relative;
+            }
+            img#icon {
+                width: 20%;
+                float: left;
+                margin-top: 1em;
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+            h1 {
+                top: 1em;
+                position: relative;
+                clear:right;
+                font-family: Candara, Roboto, Helvetica, sans-serif;
+                font-size: 3em;
+                color:Red;
+            }
+            h2 {
+                margin-top: 3em;
+                margin-left: 1em;
+                margin-right: 1em;
+                position: relative;
+                text-align:left;
+                text-transform: uppercase;
+                font-family: Bookman, Palatino, Georgia, serif;
+                color:MIDNIGHTBLUE;
+            }
+            div#demo {
+                text-transform:initial;
+                text-align: center;
+                font-style: italic;
+                font-family: Roboto, Verdana, Helvetica, sans-serif;
+                font-size: 0.9em;
+                font-weight: lighter;
+            }
+            p {
+                position: relative;
+                font-size: 1.3em;
+            }
+            p a {
+                font-weight: bold;
+            }
+            p a:nth-child(odd){
+                color:orange;
+            }
+            p a:nth-child(even){
+                color:MEDIUMAQUAMARINE;
+            }
         </style>    
     </head>    
     <body>
@@ -21,11 +67,10 @@
         <input type="submit" value="Search" /></td></tr>
         </table>
         </div> -->
-        <h4>Other news sources for </h4>
-        <p id="demo"></p>
-        <br>
+        <img id = "icon" src = "text-lines.png"/><h1>The Curator</h1>
+        <h2>News related to <div id="demo"></div></h2>
+        <br clear="left">
         <p id="articlelist"></p>
-        <button id="testbutton"></button>
         <script src="popup.js"></script>
     </body>  
 </html>

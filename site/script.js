@@ -43,7 +43,7 @@
 //           }
 //     });
 
-var settings = {
+/* var settings = {
   "url": "https://api.textrazor.com",
   "method": "POST",
   "headers": {
@@ -58,7 +58,8 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-});
+}); */
+
 
 // Get articles
 var str = "Mueller AND Trump AND stolen AND emails AND interview"
@@ -72,6 +73,24 @@ var url = 'https://newsapi.org/v2/everything?' +
 
 var req = new Request(url);
 
+$.ajax({
+  type: "POST",
+  url: 'https://api.textrazor.com',
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    'x-textrazor-key': 'e1ee3ad8e80c6865b69dde454b7febf529c37874a94542d05dae384b'
+  },
+  "body": {
+      'extractors': 'entities,entailments',
+      'text':keywords
+  },
+  success: function(keywords) {
+    console.log(keywords);
+    //do something when request is successfull
+  },
+  dataType: "json"
+});
+/* 
 fetch(url)
     .then(function(response) {
           if(response.ok) { // Check if response went through
@@ -87,4 +106,4 @@ fetch(url)
           } else { // Response wasn't ok. Check dev tools
               console.log("response failed?");
           }
-    });
+    }); */

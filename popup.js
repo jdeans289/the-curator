@@ -11,8 +11,30 @@
         var url = tabs[0].url;     //url
         var title = tabs[0].title;   //title
         //document.write(url);
-        var str = title.substring(0,7);
-        document.getElementById("demo").innerHTML = str;
+        document.getElementById("demo").innerHTML = title;
+        
+        //var str = "Trump AND Mississippi";
+        
+        var str = "";
+        var words = title.split(" ");
+        for (var i = 0; i < words.length; i += 1) {
+            //document.write(words[i] + " ");
+            var letter = words[i].charAt(0);
+            //document.write("first letter is "+letter+"\n");
+            if (isNaN(letter * 1) && letter == letter.toUpperCase()) {
+                if (letter == '-' || letter == '•')
+                    break;
+                if (i != 0){
+                    var concat = str.concat(" AND ");
+                    str = concat;
+                }
+                var concat = str.concat(words[i]);
+                str = concat;
+                //document.write("string is "+str+"\n");
+            }
+        }
+        //document.write("string is "+str+"\n");
+        
         var keywords = encodeURI(str);
         var url = 'https://newsapi.org/v2/everything?' +
                   'language=en&'+
