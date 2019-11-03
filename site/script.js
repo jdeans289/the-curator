@@ -1,10 +1,5 @@
-
-/* var settings = {
-  "url": "https://api.textrazor.com",
-=======
 var settings = {
   "url": "https://apis.paralleldots.com/v4/keywords",
->>>>>>> 32ddd5807e4b61d4a31904a6fae4f89b24d762af
   "method": "POST",
   "async": true,
   "crossDomain": true,
@@ -20,9 +15,6 @@ var settings = {
 var keywords;
 
 $.ajax(settings).done(function (response) {
-<<<<<<< HEAD
-  console.log(response);
-}); */
     console.log(response);
     keywords = response.keywords;
     var str = "";
@@ -32,7 +24,7 @@ $.ajax(settings).done(function (response) {
         str += keywords[i].keyword + " AND ";
     }
     str += keywords[num_args].keyword;
-    
+
     console.log(str);
     var keywords = encodeURI(str);
     var url = 'https://newsapi.org/v2/everything?' +
@@ -43,7 +35,7 @@ $.ajax(settings).done(function (response) {
               'apiKey=0c0e23b64d90458aa4bf76f9aad0e74b';
 
     var req = new Request(url);
-    
+
     fetch(url)
         .then(function(response) {
               if(response.ok) { // Check if response went through
@@ -61,4 +53,3 @@ $.ajax(settings).done(function (response) {
               }
         });
 });
->>>>>>> 32ddd5807e4b61d4a31904a6fae4f89b24d762af
