@@ -49,7 +49,7 @@
                           console.log(data);
                           var output = document.getElementById('articlelist');
                           for (var i = 0; i < data.articles.length ; i++) {
-                              var articleinfo = '<a href=' + data.articles[i].url + '>' +data.articles[i].title +'</a>';
+                              var articleinfo = '<a href=' + data.articles[i].url + ' target="_blank">' +data.articles[i].title +'</a>';
                               articleinfo += '</p>Source: ' + data.articles[i].source.name + '</p>';
                               output.innerHTML += articleinfo;
                           }
