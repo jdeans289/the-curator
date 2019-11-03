@@ -12,8 +12,6 @@ var settings = {
   }
 }
 
-var keywords;
-
 $.ajax(settings).done(function (response) {
     console.log(response);
     keywords = response.keywords;

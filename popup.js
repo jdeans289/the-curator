@@ -1,40 +1,37 @@
   let testbutton = document.getElementById('testbutton');
 
-/* chrome.storage.sync.get('color', function(data) {
-    changeColor.style.backgroundColor = data.color;
-    changeColor.setAttribute('value', data.color);
-}); */
-
-//testbutton.onclick = function(element) {
-    // let color = element.target.value;
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         var url = tabs[0].url;     //url
         var title = tabs[0].title;   //title
-        //document.write(url);
         document.getElementById("demo").innerHTML = title;
-        
-        //var str = "Trump AND Mississippi";
-        
-        var str = "";
-        var words = title.split(" ");
-        for (var i = 0; i < words.length; i += 1) {
-            //document.write(words[i] + " ");
-            var letter = words[i].charAt(0);
-            //document.write("first letter is "+letter+"\n");
-            if (isNaN(letter * 1) && letter == letter.toUpperCase()) {
-                if (letter == '-' || letter == '•')
-                    break;
-                if (i != 0){
-                    var concat = str.concat(" AND ");
-                    str = concat;
-                }
-                var concat = str.concat(words[i]);
-                str = concat;
-                //document.write("string is "+str+"\n");
-            }
+
+        var settings = {
+          "url": "https://apis.paralleldots.com/v4/keywords",
+          "method": "POST",
+          "async": true,
+          "crossDomain": true,
+          "data": {
+            "api_key": "A8WONI23dxtGDNwnTYzZPjBYafO2YMPpj1lpaNU7tcw",
+            "text": title,
+        },
+          "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+          }
         }
-        //document.write("string is "+str+"\n");
-        
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            keywords = response.keywords;
+            var str = "";
+            var num_args = Math.min(keywords.length-1, 5);
+
+            for (var i = 0; i < num_args; i++) {
+                str += keywords[i].keyword + " AND ";
+            }
+            str += keywords[num_args].keyword;
+
+            // document.write(str);
+
         var keywords = encodeURI(str);
         var url = 'https://newsapi.org/v2/everything?' +
                   'language=en&'+
@@ -61,11 +58,5 @@
                       console.log("response failed?");
                   }
             });
-        //document.write(title);
+        });
     });
-   /*  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.executeScript(
-          tabs[0].id,
-          {code: 'document.body.style.backgroundColor = "' + color + '";'});
-    }); */
-//};
