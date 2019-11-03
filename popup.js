@@ -5,6 +5,8 @@
         var title = tabs[0].title;   //title
         document.getElementById("demo").innerHTML = title;
 
+        // if (title.)
+
         var settings = {
           "url": "https://apis.paralleldots.com/v4/keywords",
           "method": "POST",
@@ -23,10 +25,14 @@
             console.log(response);
             keywords = response.keywords;
             var str = "";
-            var num_args = Math.min(keywords.length-1, 5);
-
+            // str += title + "\n";
+            var num_args = Math.min(keywords.length-1, 1);
+            // for (var i = 0; i < keywords.length; i++) {
+            //     str += i + ": " + keywords[i].keyword;
+            // }
+            // str += "\n";
             for (var i = 0; i < num_args; i++) {
-                str += keywords[i].keyword + " AND ";
+                str += keywords[i].keyword + " ";
             }
             str += keywords[num_args].keyword;
 
@@ -36,10 +42,9 @@
         var url = 'https://newsapi.org/v2/everything?' +
                   'language=en&'+
                   'q=' + keywords + '&' +
-                  'from=2019-11-02&' +
-                  'sortBy=popularity&' +
+                  'sortBy=relevancy&' +
                   'apiKey=0c0e23b64d90458aa4bf76f9aad0e74b';
-
+                  // 'from=2019-11-02&' +
         var req = new Request(url);
 
         fetch(url)
@@ -48,7 +53,7 @@
                       response.json().then(function(data) {
                           console.log(data);
                           var output = document.getElementById('articlelist');
-                          for (var i = 0; i < data.articles.length ; i++) {
+                          for (var i = 0; i < data.articles.length; i++) {
                               var articleinfo = '<a href=' + data.articles[i].url + ' target="_blank">' +data.articles[i].title +'</a>';
                               articleinfo += '</p>Source: ' + data.articles[i].source.name + '</p>';
                               output.innerHTML += articleinfo;
